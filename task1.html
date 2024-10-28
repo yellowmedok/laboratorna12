@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>котики чи песики?</title>
+</head>
+<body>
+    <h1 style="text-align: center;">що вам більше подобається?</h1>
+    <script>
+        "use strict";
+        
+        let choice = prompt("що вам більше подобається: котики чи песики? введіть 'котики' або 'песики'.").toLowerCase();
+        
+        // Використовуємо оператор if для виведення відповідного зображення
+        if (choice === "котики") {
+            document.write("<p style='text-align: center;'>ось котик для вас!</p>");
+            document.write("<img src='images/kyrylo.jpeg' alt='котик' style='display: block; margin: 0 auto; width: 300px; height: 300px'>");
+        } else if (choice === "песики") {
+            document.write("<p style='text-align: center;'>ось песик для вас!</p>");
+            document.write("<img src='images/taksa.jpeg' alt='песик' style='display: block; margin: 0 auto;'>");
+        } else {
+            document.write("<p style='text-align: center;'>будь ласка, введіть 'котики' або 'песики'!</p>");
+        }
+    </script>
+</body>
+</html>

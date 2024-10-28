@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>нра "лабіринт"</title>
+    <style>
+        #maze {
+            font-family: monospace;
+            white-space: pre;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>гра "лабіринт"</h1>
+    <h1></h1>
+    <div id="maze"></div>
+    <h1></h1>
+    <h1>введіть команду (вгору/вниз/вліво/вправо)</h1>
+    <input type="text" id="command" placeholder="введіть" />
+    <button id="moveButton">рухатись</button>
+    <p id="message"></p>
+
+    <script>
+        "use strict";
+
+
+        const maze = [
+            [0, 1, 0, 0, 0],
+            [0, 1, 1, 0, 1],
+            [0, 1, 0, 0, 0],
+            [0, 0, 0, 1, 0],
+            [0, 1, 0, 1, 0],
+        ];
+
+        let playerPosition = { x: 0, y: 0 };
+        const exitPosition = { x: 4, y: 4 };
+
+        const mazeDiv = document.getElementById('maze'); // Оголошення mazeDiv
+
+        function drawMaze() {
+            mazeDiv.innerHTML = ''; // очищаємо попередній малюнок
+            for (let i = 0; i < maze.length; i++) {
+                for (let j = 0; j < maze[i].length; j++) {
+                    if (playerPosition.x === i && playerPosition.y === j) {
+                        mazeDiv.innerHTML += '• '; // '•' для позначення гравця
+                    } else if (i === exitPosition.x && j === exitPosition.y) {
+                        mazeDiv.innerHTML += '✖ '; // '✖' для позначення виходу
+                    } else if (maze[i][j] === 1) {
+                        mazeDiv.innerHTML += '█ '; // '█' для позначення стіни
+                    } else {
+                        mazeDiv.innerHTML += '  '; 
+                    }
+                }
+                mazeDiv.innerHTML += '<br>'; 
+            }
+        }
+
+        function movePlayer(direction) {
+            let newX = playerPosition.x;
+            let newY = playerPosition.y;
+
+            // оновлення координат залежно від напрямку
+            switch (direction) {
+                case 'вгору':
+                    newX--;
+                    break;
+                case 'вниз':
+                    newX++;
+                    break;
+                case 'вліво':
+                    newY--;
+                    break;
+                case 'вправо':
+                    newY++;
+                    break;
+                default:
+                    document.getElementById('message').innerText = 'невірна команда!';
+                    return;
+            }
+
+            // перевірка на валідність нового місця
+            if (newX >= 0 && newX < maze.length && newY >= 0 && newY < maze[newX].length && maze[newX][newY] === 0) {
+                playerPosition.x = newX;
+                playerPosition.y = newY;
+
+                // перевірка на досягнення виходу
+                if (playerPosition.x === exitPosition.x && playerPosition.y === exitPosition.y) {
+                    document.getElementById('message').innerText = "вітаємо! ви знайшли вихід!";
+                } else {
+                    document.getElementById('message').innerText = ''; // очищаємо повідомлення
+                }
+            } else {
+                document.getElementById('message').innerText = 'ви не можете пройти туди!';
+            }
+
+            drawMaze(); // оновлюємо малюнок лабіринту
+        }
+
+        // подія кнопки для руху
+        document.getElementById('moveButton').addEventListener('click', function() {
+            const command = document.getElementById('command').value.toLowerCase();
+            movePlayer(command);
+            document.getElementById('command').value = ''; // очищаємо поле вводу
+        });
+
+        // Перший малюнок лабіринту
+        drawMaze();
+    </script>
+</body>
+</html>

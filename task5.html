@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>привітання</title>
+</head>
+<body>
+    <script>
+        "use strict";
+
+        let name_input, age_input, city_input;
+
+        name_input = prompt("введіть своє імʼя: "); 
+        age_input = prompt("введіть свій вік: "); 
+        city_input = prompt("введіть своє місто: "); 
+
+        const person = {
+            name: name_input,
+            age: age_input,
+            city: city_input
+        }
+
+        for (let key in person){
+            document.write(key + ": " + person[key] + "  ");
+        }
+        
+    </script>
+</body>
+</html>

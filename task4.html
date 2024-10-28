@@ -1,0 +1,61 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>оператори циклу</title>
+	</head>	
+	<body>
+		<script> 
+			"use strict"
+
+            // for
+            let current = 1, prev = 0, next = 0;
+            let loops = parseInt(prompt("for loop: введіть число циклів:"));
+
+
+            for(let n = 1; n < loops; n++){
+                next = prev + current
+                prev = current
+                current = next;
+            }
+	
+			document.write("for loop: число фібоначі: ", next); 
+            
+            // while
+            let sum = 0; 
+            let input; 
+
+            while (true) {
+            input = prompt("while loop: введіть число, щоб додати або слово 'stop': "); 
+    
+            if (input === "stop") {
+                break;
+            }
+
+            if (!isNaN(parseInt(input))) {
+                sum += parseInt(input); 
+            } else {
+                alert("будь ласка, введіть число або слово 'stop' для завершення."); 
+                }
+            }
+
+            document.write("<br><br>while loop: загальна сума: ", sum); 
+            
+            // do while 
+            let confirmation; // Змінна для збереження відповіді користувача
+
+            do {
+            confirmation = prompt("do while loop: ви дійсно хочете виконати цю дію? (так/ні)").toLowerCase(); 
+
+            if (confirmation === "так") {
+                document.write("<br><br>do while loop: дію виконано!"); 
+                break; 
+            } else if (confirmation === "ні") {
+                alert("дію не виконано. спробуйте ще раз."); 
+            } else {
+                alert("будь ласка, введіть 'так' або 'ні'."); 
+            }
+            } while (confirmation !== "так"); 
+
+		</script>
+	</body>
+</html>

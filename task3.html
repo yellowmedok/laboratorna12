@@ -1,0 +1,41 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>оператор switch</title>
+	</head>	
+	<body>
+		<script> 
+			"use strict";
+			let daynum = new Date().getDay();
+            let dayname
+
+            switch(daynum){
+                case 0:
+                dayname = "неділя";
+                break;
+                case 1:
+                dayname = "понеділок";
+                break;
+                case 2:
+                dayname = "вівторок";
+                break;
+                case 3:
+                dayname = "середа";
+                break;
+                case 4:
+                dayname = "четвер";
+                break;
+                case 5:
+                dayname = "пʼятниця";
+                break;
+                case 6:
+                dayname = "субота";
+                break;
+                default:
+                dayname = "невідомий день"
+			}
+	
+			document.write("Сьогодні: ", dayname);
+		</script>
+	</body>
+</html>
